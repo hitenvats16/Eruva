@@ -1,6 +1,9 @@
 import { knowledgeSourceStatus } from "@/constants/knowledgeSource"
 
 export type ChatbotType = {
+  id?: ChatbotDetails['id']
+  key?: ChatbotDetails['key']
+  tokens?: ChatbotDetails['tokens']
   name?: ChatbotDetails['name']
   active?: ChatbotDetails['active']
   configuration?: ChatbotConfiguration
