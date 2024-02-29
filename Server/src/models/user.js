@@ -10,7 +10,10 @@ export const findActiveUserByEmail = (email) =>
 
 export const createUser = (data) =>
     prisma.user.create({
-        data,
+        data:{
+            isEmailVerified: true,
+            ...data
+        },
     })
 
 export const findActiveUserById = (id) =>
