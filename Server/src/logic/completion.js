@@ -3,6 +3,8 @@ import { AuthorType } from '@prisma/client'
 import OpenAI from './llm.js'
 import getPromptTemplate from './prompts/index.js'
 
+const MODEL = 'model-3-7'
+
 export const getChatResponses = async (
     identifier,
     previousMessages,
@@ -28,7 +30,7 @@ export const getChatResponses = async (
     })
     const res = await OpenAI.chat.completions.create({
         messages,
-        model: 'gpt-3.5-turbo',
+        model: MODEL,
         max_tokens: 500,
         user: identifier,
     })
@@ -51,7 +53,7 @@ export const getSummary = async (identifier, messages) => {
                 content: summaryPrompt(),
             },
         ],
-        model: 'gpt-3.5-turbo',
+        model: MODEL,
         max_tokens: 500,
         user: identifier,
     })
@@ -75,7 +77,7 @@ export const mergeSummary = async ({ prevSummary, currentSummary }) => {
                 }),
             },
         ],
-        model: 'gpt-3.5-turbo',
+        model: MODEL,
         max_tokens: 500,
     })
     return {

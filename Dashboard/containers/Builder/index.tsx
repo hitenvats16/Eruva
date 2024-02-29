@@ -16,6 +16,7 @@ import { BuilderFormType } from '@/lib/type/builder'
 import Preview from './Preview'
 import BuilderForm from './BuilderForm'
 import { updateChatbot } from '@/api/browser/chatbot'
+import toast from 'react-hot-toast'
 
 type PropType = {
   orgId: number
@@ -55,15 +56,21 @@ function VisualBuilderContainer({ orgId, chatbot }: PropType) {
 
   async function submitHandler(data: ChatbotConfiguration): Promise<void> {
     setSubmiting(true)
-    await updateChatbot({
-      orgId,
-      chatbotId: chatbot.id,
-      payload: {
-        configuration: data,
-      },
-    })
-    setSubmiting(false)
-    router.refresh()
+    try {
+      await updateChatbot({
+        orgId,
+        chatbotId: chatbot.id,
+        payload: {
+          configuration: data,
+        },
+      })
+      toast.success('Configuration updated successfully')
+    } catch (e) {
+      toast.error('Some error occured while updating config.')
+    } finally {
+      setSubmiting(false)
+      router.refresh()
+    }
   }
 
   return (

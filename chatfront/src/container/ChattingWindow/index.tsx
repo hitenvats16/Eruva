@@ -20,7 +20,7 @@ export default function ChattingWindow({
   msgLimitExceeded: boolean
 }) {
   return (
-    <div className='rounded-xl shadow-lg bg-[#f5f6f8] overflow-hidden w-96 flex flex-col h-[700px]'>
+    <div className='rounded-xl shadow-lg bg-[#f5f6f8] overflow-hidden w-[500px] flex flex-col h-[700px]'>
       <TopBar isServerIdle={isServerIdle} configuration={configuration} />
       <Body
         chat={chat}

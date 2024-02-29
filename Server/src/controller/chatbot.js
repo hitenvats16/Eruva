@@ -1,6 +1,7 @@
 import Joi from 'joi'
 import { KnowledgeType } from '@prisma/client'
 import _ from 'lodash'
+import { generate } from 'random-words'
 
 import {
     createChatbot,
@@ -13,7 +14,7 @@ import {
 } from '../models/knowledgeSource.js'
 import eventManager from '../events/index.js'
 import { getDataFromCache } from '../cache/index.js'
-import { deleteIndex } from '../models/pinecone.js'
+import { createIndex, deleteIndex } from '../models/pinecone.js'
 import { Configuration } from '../constants/chatbot.js'
 
 export const CreateChatBot = async (req, res) => {
@@ -33,9 +34,23 @@ export const CreateChatBot = async (req, res) => {
             ],
         })
     }
+    const indexName = _.toLower(generate({
+        exactly: 5,
+        join: '-',
+    }))
+    
     const chatbot = await createChatbot({
         ...value,
         organisationId: req.organisation.id,
+        indexName,
+    })
+    await createIndex(indexName, {
+        spec: {
+            serverless: {
+                cloud: 'aws',
+                region: 'us-west-2',
+            },
+        },
     })
     return res.status(200).json({
         name: chatbot.name,

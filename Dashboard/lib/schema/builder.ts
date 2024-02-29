@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const builderFormSchema = z.object({
     errorText: z.string(),
-    maxUserMsgAllowed: z.number(),
+    maxUserMsgAllowed: z.coerce.number(),
     greetingMessage: z.string(),
     limitExceedText: z.string(),
     thinkingText: z.string(),
@@ -41,8 +41,8 @@ export const builderFormSchema = z.object({
         body: z.string(),
       }),
       iconPosition: z.object({
-        right: z.number(),
-        bottom: z.number(),
+        right: z.coerce.number(),
+        bottom: z.coerce.number(),
       }),
     }),
     initialPrompts: z.array(

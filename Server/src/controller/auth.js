@@ -322,6 +322,7 @@ export const SendEmailVerifyingRequest = async (req, res) => {
             message: 'email sent',
         })
     } catch (e) {
+        console.log(e)
         return res.status(500).json({
             errors: [
                 {

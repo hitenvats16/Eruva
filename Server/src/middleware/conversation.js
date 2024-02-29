@@ -16,10 +16,6 @@ export const attachConversationMiddleware = async (req, res, next) => {
             }]
         })
     }
-    console.log({
-        conversationId,
-        id: chatbot.id
-    })
     let conversation = await createOrGetConversation(conversationId,chatbot.id)
     req.conversation = conversation
     next()

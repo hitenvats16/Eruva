@@ -7,5 +7,4 @@ export const prisma = new PrismaClient()
 
 export const pinecone = new Pinecone({
     apiKey: PineConfig.API_KEY,
-    environment: PineConfig.ENVIRONMENT,
 })

@@ -103,9 +103,9 @@ function ChatbotContainer({ orgId, chatbotId }: PropType) {
             <div className='flex flex-1 gap-5 p-5 overflow-y-scroll'>
               <Settings chatbot={chatbotQuery.data} orgId={orgId} />
               <CodeSnippets
-                jsCode={`<script type="module" crossorigin src="https://ejmmlwimxhtytxhluzor.supabase.co/storage/v1/object/public/static_bundle/bundle.js"></script>`}
+                jsCode={`<script type="module" crossorigin src="${process.env.NEXT_PUBLIC_JS_BUNDLE_LOCATION}"></script>`}
                 bodyCode={`<chat-front identifier="${chatbotQuery.data?.key}"></chat-front>`}
-                cssCode={`<link rel="stylesheet" href="https://ejmmlwimxhtytxhluzor.supabase.co/storage/v1/object/public/static_bundle/bundle.css">`}
+                cssCode={`<link rel="stylesheet" href="${process.env.NEXT_PUBLIC_CSS_BUNDLE_LOCATION}">`}
               />
             </div>
           </div>

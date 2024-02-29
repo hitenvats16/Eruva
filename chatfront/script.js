@@ -8,7 +8,7 @@ config()
 
 const API_KEY = process.env.SUPABASE_API
 const URL = process.env.SUPABASE_URL
-const BUCKET_NAME = 'static_bundle'
+const BUCKET_NAME = 'static_bundles'
 
 const supabase = createClient(URL, API_KEY)
 
