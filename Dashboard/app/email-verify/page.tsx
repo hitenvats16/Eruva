@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import Wrapper from './wrapper'
+import Wrapper from './container'
 
 export default function Page() {
   return (

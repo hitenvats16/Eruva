@@ -1,9 +1,11 @@
-import { Suspense } from "react";
+import { Suspense } from 'react'
 
-import ForgotPasswordWrapper from "./wrapper";
+import ForgotPasswordWrapper from './container'
 
-export default function Page(){
-    return <Suspense>
-        <ForgotPasswordWrapper/>
+export default function Page() {
+  return (
+    <Suspense>
+      <ForgotPasswordWrapper />
     </Suspense>
+  )
 }
