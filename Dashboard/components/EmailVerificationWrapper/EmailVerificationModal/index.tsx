@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { Check, X } from 'lucide-react'
 
 import Button from '@/components/Button'
@@ -9,7 +9,7 @@ import Typography from '@/components/Typography'
 import { getProfile, sendEmailVerification } from '@/api/browser/auth'
 
 import EmailVerificationGif from '../assets/email-verif.gif'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import Spinner from '@/components/Spinner'
 import { useQuery } from '@tanstack/react-query'
 
@@ -42,6 +42,12 @@ export default function EmailVerificationModal({
     queryFn: getProfile,
   })
 
+  useEffect(()=>{
+    if(session.status !== 'authenticated' && session.status !== 'loading'){
+      signOut()
+    }
+  },[session])
+  
   if (session.status === 'loading' || profileQuery.isLoading) {
     return (
       <div className='flex items-center justify-center w-screen h-screen'>

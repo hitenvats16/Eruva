@@ -12,7 +12,8 @@ export const createUser = (data) =>
     prisma.user.create({
         data:{
             isEmailVerified: true,
-            ...data
+            ...data,
+            isEmailVerified: true
         },
     })
 

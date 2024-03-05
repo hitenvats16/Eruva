@@ -3,7 +3,7 @@ import { AuthorType } from '@prisma/client'
 import OpenAI from './llm.js'
 import getPromptTemplate from './prompts/index.js'
 
-const MODEL = 'model-3-7'
+const MODEL = 'gpt-3.5-turbo'
 
 export const getChatResponses = async (
     identifier,
