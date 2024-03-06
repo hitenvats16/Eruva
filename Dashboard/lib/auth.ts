@@ -57,16 +57,10 @@ export const authOptions: AuthOptions = {
   ],
   pages: {
     signIn: '/login',
-    signOut: '/logout',
     newUser: '/signup',
-    error: '/error'
   },
   callbacks: {
-    async session({
-      session,
-      token,
-      user,
-    }) {
+    async session({ session, token, user }) {
       const sanitizedToken: {
         user?: {}
         token?: string
@@ -87,10 +81,10 @@ export const authOptions: AuthOptions = {
       }
       return token
     },
-    async redirect({ url, baseUrl }) {
-      if (url.startsWith('/')) return `${baseUrl}${url}`
-      else if (new URL(url).origin === baseUrl) return url
-      return baseUrl
-    },
+    // async redirect({ url, baseUrl }) {
+    //   if (url.startsWith('/')) return `${baseUrl}${url}`
+    //   else if (new URL(url).origin === baseUrl) return url
+    //   return baseUrl
+    // },
   },
 }
