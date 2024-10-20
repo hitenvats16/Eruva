@@ -13,9 +13,6 @@ RUN npm ci --only=production
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Build the Next.js application
-RUN npm run build
-
 # Expose the port that the application will listen on
 EXPOSE 3000
 
